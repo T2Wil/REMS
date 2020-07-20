@@ -14,7 +14,7 @@ import AlertComponent from '../components/Alert';
 import {Redirect} from 'react-router-dom';
 import getNonEmptyEntries from '../helpers/getNonEmptyEntries';
 
-const Signup =(props) => {
+const Signup = (props) => {
     const [fullName, setName] = useState();
     const [fatherName, setFatherName] = useState();
     const [motherName, setMotherName] = useState();
@@ -120,7 +120,7 @@ const Signup =(props) => {
                             <Button name="Register" label="Register" handleClick={handleClick}/>   
                         </div>
                         <div className="signup--form--footer"> 
-                            <Text label="Already have an account ? Sign in " linkLabel="here" linkAddress="/login" className="txt" />
+                            <Text label="Already have an account ? Sign in " linkLabel="here" linkAddress="/login" className="txt" exception={true}/>
                     </div>
                     </div>
                 </div>

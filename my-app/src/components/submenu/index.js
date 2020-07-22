@@ -6,6 +6,8 @@ import { instructor } from "./submenus";
 
 const Submenu = ({ page }) => {
   const role = 'instructor';
+
+  //<p className="course-title"><Link to={`courses/${props.course.id}/assignments`}>{props.course.name}</Link></p>
   return (
     <>
       <div className="col-md-2">
@@ -14,7 +16,7 @@ const Submenu = ({ page }) => {
               role === 'instructor' ?
               instructor.map(({ name, url }, idx) => 
                 <p key={idx} className={page === name ? 'submenu isActive' : 'submenu'}>
-                  <Link to={url}>
+                  <Link to={`/courses/${localStorage.getItem('courseId')}${url}`}>
                     {name}
                   </Link>
                 </p>

@@ -8,7 +8,9 @@ const CourseCard = (props) => {
   const updateState = (data) => {
     props.update(data);
   }
-
+  // localStorage.setItem('courseId',props.course.id);
+  // localStorage.setItem('courseName',props.course.name);
+  // console.log('props.course.name: ', props.course.name);
   return ( 
     <>
       <div className="col-md-3">
@@ -40,6 +42,3 @@ const CourseCard = (props) => {
 export default connect(null, {
   update: publishOrUnpublishCourses
 })(CourseCard);
-
-
-

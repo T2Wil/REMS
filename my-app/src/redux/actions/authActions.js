@@ -27,13 +27,22 @@ export const signup = (newUser) => {
 };
 
 export const login = (user) => {
-  return (dispatch, state, { getFirebase, getFirestore }) => {
+  return async(dispatch, state, { getFirebase, getFirestore }) => {
     const firebase = getFirebase();
+    const firestore = getFirestore();
+    const snapshot = await firestore.collection('users').where('studentUniqueNumber','==', parseInt(user.emailOrStudentUniqueNumber)).get();
+    let studentEmail;
+    if(snapshot.empty) studentEmail = user.emailOrStudentUniqueNumber;
+    else snapshot.forEach(doc => {
+      studentEmail = doc.data().email;
+    });
+    
 
     firebase
       .auth()
-      .signInWithEmailAndPassword(user.emailOrStudentUniqueNumber, user.password)
-      .then(() => {
+      .signInWithEmailAndPassword(studentEmail, user.password)
+      .then((doc) => {
+        console.log('iddddd: ',doc.id );
         dispatch({
           type: actionTypes.LOGIN_SUCCESS,
           response: {message: 'success'}

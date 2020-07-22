@@ -8,9 +8,8 @@ import { NavLink } from "react-router-dom";
 import { instructor } from "./menu";
 import { connect } from "react-redux";
 
-
 const Sidebar = (props) => {
-	const { userInfo } = props;
+	const { userProfile } = props;
   return (
     <div >
 			<div id="sidebar" className="sidebar">
@@ -18,9 +17,9 @@ const Sidebar = (props) => {
 						{/* We will retrieve all the info in db according to the user */}
 						<div className="companyImg">
 							<div className="photo">
-								<img alt="" className="avatar rounded-circle" src={userInfo.schoolLogo !== null ? userInfo.schoolLogo : schoolImg}/>
+								<img alt="" className="avatar rounded-circle" src={userProfile.schoolLogo !== null ? userProfile.schoolLogo : schoolImg}/>
 							</div>
-							<span className="">{userInfo.schoolName} </span>
+							<span className="">{userProfile.school} </span>
 						</div>
 					<ul className="nav">
 						{
@@ -40,11 +39,12 @@ const Sidebar = (props) => {
                 <div className="left-sidebar-footer-block">
                   <div className="left-sidebar-footer-block-left">
 										{/* We will retrieve all the info in db according to the user */}
-                    <img className="avatar rounded-circle" alt="profile" src={userInfo.imageUrl !== null ? userInfo.imageUrl : userGrey}/>
+					<img className="avatar rounded-circle" alt="profile" src={userGrey}/>
+                    {/* <img className="avatar rounded-circle" alt="profile" src={userProfile.imageUrl !== null ? userProfile.imageUrl : userGrey}/> */}
                   </div>
                   <div className="left-sidebar-footer-block-info">
-                    <strong className="left-sidebar-footer-block-info-name">{ userInfo.name.length < 9 ? userInfo.name.substr(0, 9) : `${userInfo.name.substr(0, 7)}...`} </strong>
-                    <p className="left-sidebar-footer-block-info-role">{userInfo.role}</p>
+                    {/* <strong className="left-sidebar-footer-block-info-name">{ userProfile.fullName.length < 9 ? userProfile.fullName.substr(0, 9) : `${userProfile.fullName.substr(0, 7)}...`} </strong> */}
+                    <p className="left-sidebar-footer-block-info-role">{userProfile.role}</p>
                   </div>
                   <div className="left-sidebar-footer-block-right">
                     <img  alt="" src={Indent50}/>
@@ -60,7 +60,15 @@ const Sidebar = (props) => {
   );
 };
 
-const mapStateToProps = ({ courses }) => ({
-	userInfo: courses.user
-});
+// const mapStateToProps = ({ courses,firebase }) => ({
+// 	userProfile: firebase.profile,
+// 	userInfo: courses.user
+// });
+const mapStateToProps = (state) => {
+	console.log('state: ', state);
+	return {
+	  userProfile: state.firebase.profile,
+	}
+  }
+
 export default connect(mapStateToProps)(Sidebar);

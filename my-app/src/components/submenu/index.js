@@ -9,7 +9,7 @@ const Submenu = ({ page }) => {
   return (
     <>
       <div className="col-md-2">
-        <div className="card p-4">
+        <div className="card p-4 ">
             {
               role === 'instructor' ?
               instructor.map(({ name, url }, idx) => 

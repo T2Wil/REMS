@@ -6,9 +6,14 @@ import SignupStudent from '../containers/SignupStudent';
 import Dashboard from "../containers/Dashboard";
 import Assignments from "../containers/Assignments";
 import Login from '../containers/Login';
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import '../assets/styles/styles.scss';
 
 const App = () => {
   return (
+    <>
+    <ToastContainer/>
     <Router>
       <Switch>
         <Route exact path={["/","/signup"]} component={SignupInstructor}>
@@ -23,6 +28,7 @@ const App = () => {
           <Route component={NotFound} />
       </Switch>
     </Router>
+    </>
   );
 };
 

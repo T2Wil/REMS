@@ -61,7 +61,6 @@ const CourseSection = (props) => {
   );
 };
 const mapStateToProps = (state) => {
-  console.log('state: ',state);
   return {
     sections: state.courses.sections,
     actionMessage: state.courses.message,

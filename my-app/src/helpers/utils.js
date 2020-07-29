@@ -11,9 +11,10 @@ export const getCharsBeforeIndex = (index) => {
   };
 };
 
-export const updateArrOfObj = (arr, obj) => {
-  return arr.map((object) => {
-    if (object.id === obj.id) return obj;
-    else return object;
+
+export const updateSections = (sections, newSection) => {
+  return sections.map((section) => {
+    if (section.sectionId === newSection.sectionId) return newSection;
+    else return section;
   });
 };

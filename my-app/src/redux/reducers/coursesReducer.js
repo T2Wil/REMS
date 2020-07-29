@@ -10,8 +10,7 @@ import {
   UPDATE_COURSE_SECTION_SUCCESS,
   UPDATE_COURSE_SECTION_FAILURE
 } from "../actions/actionTypes";
-import {updateArrOfObj} from '../../helpers/utils';
-
+import { updateSections } from "../../helpers/utils";
 
 const initialState = {
   isLoading: false,
@@ -82,7 +81,8 @@ export default (state = initialState, { type, payload }) => {
         case UPDATE_COURSE_SECTION_SUCCESS:
         return {
           ...state,
-          section: payload
+          section: payload,
+          sections:  updateSections(state.sections,payload)
         };
         case UPDATE_COURSE_SECTION_FAILURE:
         return {

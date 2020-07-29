@@ -9,7 +9,7 @@ import { Spinner } from "react-bootstrap";
 
 const DropdownComponent = (props) => {
   const { type, handleClick, rowId } = props;
-  const [isToggled, toggle] = useState(false);
+  const [show, setShow] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [deleteConfirmation,setDeleteConfirmation] = useState(false);
 
@@ -20,11 +20,11 @@ const DropdownComponent = (props) => {
     }
   }, [props.section]);
 
-  const toggleModal = (target) => {
+  const showModal = (target) => {
     if (target.name === "section") {
       setIsLoading(true);
       props.getCourseSectionByName(localStorage.getItem("courseId"), target.id);
-      toggle(!isToggled);
+      setShow(true);
     } else if (target.name === "delete"){
       setIsLoading(true);
       props.getCourseSectionByName(localStorage.getItem("courseId"), target.id);
@@ -36,7 +36,7 @@ const DropdownComponent = (props) => {
     if (modalFlag === true) {
       return (
         <Modal
-          toggled={isToggled}
+          show={show}
           modalTitle="Edit section"
           sectionName={props.section.sectionName}
           calendarSystem={props.section.calendarSystem}
@@ -63,7 +63,7 @@ const DropdownComponent = (props) => {
           id={rowId}
           href="#/"
           name="section"
-          onClick={(event) => toggleModal(event.target)}
+          onClick={(event) => showModal(event.target)}
         >
           edit
         </a>
@@ -71,7 +71,7 @@ const DropdownComponent = (props) => {
           id={rowId}
           href="#/"
           name="delete"
-          onClick={(event) => toggleModal(event.target)}
+          onClick={(event) => showModal(event.target)}
         >
           delete
         </a>

@@ -31,10 +31,10 @@ const ModalComponent = (props) => {
     setStartingDate("");
     setClosingDate("");
   };
-  useEffect(() => {
+  // useEffect(() => {
 
-    setShow(toggled);
-  }, [props.toggled, props.sections]);
+  //   setShow(toggled);
+  // }, [props.toggled, props.sections]);
   const handleChange = (target) => {
     if (target.id === "sectionName") setSectionName(target.value);
     else if (target.type === "radio" && target.name === "calendarSystem")
@@ -61,6 +61,7 @@ const ModalComponent = (props) => {
             semOrTrim,
             startingDate,
             closingDate,
+            sectionId : props.sectionId,
           };
           props.updateCourseSection(
             localStorage.getItem("courseId"),

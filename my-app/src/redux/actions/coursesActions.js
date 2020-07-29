@@ -15,6 +15,8 @@ import {
 } from "./actionTypes";
 import actionCreator from "./actionCreator";
 import { toast } from "react-toastify";
+import {updateSections} from '../../helpers/utils';
+
 
 export const createCourse = (newCourse) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
@@ -173,7 +175,7 @@ export const updateCourseSection = (
       });
       dispatch({
         type: UPDATE_COURSE_SECTION_SUCCESS,
-        payload: updates,
+        payload: updates
       });
       setShow(false);
       setIsLoading(false);
@@ -193,7 +195,6 @@ export const deleteCourseSection = (courseId, sectionId) => {
       const course = firestore.collection("courses").doc(courseId);
       const sectionDoc = await course.collection("sections").doc(sectionId);
       const deleted = await sectionDoc.delete();
-      console.log("deleted: ", deleted);
 
       toast.success("Section deleted successfully", {
         position: "top-center",
@@ -205,7 +206,6 @@ export const deleteCourseSection = (courseId, sectionId) => {
       });
     } catch (error) {
       console.log("error : ", error);
-
     }
   };
 };
